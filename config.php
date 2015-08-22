@@ -12,3 +12,5 @@ $conf->server_name = 'localhost:80';
 $conf->server_url = 'http://'.$conf->server_name;
 $conf->app_root = '/SimpleManager';
 $conf->app_url = $conf->server_url.$conf->app_root;
+$conf->action_root = $conf->app_root.'/app/controller.php?action=';
+$conf->action_url = $conf->server_url.$conf->action_root;
