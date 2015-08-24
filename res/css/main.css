@@ -1,0 +1,21 @@
+.title h1{
+	text-align: center;
+}
+.shape {
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  background: #ddddff;
+  margin: 20px;
+}
+
+ul.nav li a, ul.nav li a:visited {
+    color: #fff !important;
+}
+
+ul.nav li a:hover, ul.nav li a:active {
+    color: #fff !important;
+}
+
+ul.nav li.active a {
+    color: #fff !important;

@@ -1,7 +1,8 @@
 <?php
 require_once $conf->root_path.'/app/model/QueryDB.php';
+include_once $conf->root_path.'/app/view/snip/header.php';
 
-echo 'Hello, Welcome! <br /><br />';
+
 
 $q = new QueryDB();
 
@@ -10,10 +11,14 @@ $count = $q->getCount()->fetch_row();
 
 
 // ... generowanie widoku ....
-
-echo "Panel logowania";
-
 ?>
+<div class="container"> <h1 class="text-center">
+<?php 
+echo "Panel logowania";
+?>
+</h1></div><div class="container">
+
+<div class="col-md-4 col-md-offset-4"> 
 <form action="<?php echo $conf->action_root; ?>doLogin" method="post" >
 			<label for="login">Login: </label> 
 			<input type="text" name="login" required > <br />		
@@ -26,7 +31,8 @@ echo "Panel logowania";
 			<input type="submit" value="Zatwierdz" />   			
     		
 </form>
-
+</div>
+</div>
 
 
 
