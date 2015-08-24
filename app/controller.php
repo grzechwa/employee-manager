@@ -17,6 +17,7 @@ if(isset($_REQUEST['action'])){
 switch ($action) {
 	default : 
 		include_once $conf->root_path.'/app/welcome.php';
+		//header("Location: " . $conf->app_url . '/app/welcome.php');
 		break;
 	case 'empl' :
 		include_once $conf->root_path.'/app/view/empl/empl.php';
@@ -35,5 +36,18 @@ switch ($action) {
 		break;
 	case 'detail' :
 		include_once $conf->root_path . '/app/view/admin/detailEmpl.php';
+	break;
+	case 'goLogin' :
+		include_once $conf->root_path . '/app/view/security/login.php';
+	break;
+	case 'doLogin' :
+		include_once $conf->root_path . '/app/model/LogDB.php';
+	break;
+	case 'doLogout' :
+		// TODO: preniesc z kontrolera
+		session_start();
+		$_SESSION['isLogged'] = null;
+		session_destroy();
+		header("Location: " . $conf->app_url);
 	break;
 }

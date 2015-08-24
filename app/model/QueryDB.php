@@ -66,6 +66,24 @@ class QueryDB {
 
 	}
 	
+	public function getLogin($login, $haslo) {
+		$this->db->connect();
+		
+		$select = "SELECT pracownik.id_pracownik, pracownik.login, pracownik.password, pracownik.id_stanowisko";
+		$from = " FROM pracownik";
+		$join = null;
+		$where = " WHERE login like '$login' AND password like '$haslo'";
+		$orderBy = null;
+		
+		$sql = $select.$from.$join.$where.$orderBy;
+		
+		$conn = $this->db->getConn();
+		$result = mysqli_query($conn,$sql);
+		$this->db->disconnect();
+		return $result;
+	}
+	
+	
 	/**
 	 * Pobiera szczegolowy opis wskazanego pracownika
 	 * przez parametr id

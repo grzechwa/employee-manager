@@ -1,7 +1,21 @@
 <?php
 require_once $conf->root_path.'/app/model/QueryDB.php';
 echo 'Witaj, na stronie admina <br />';
+if(!isset($_SESSION))
+	session_start();
 
+
+if($_SESSION['isLogged'] == null){
+	header("Location: " . $conf->app_url);
+} else {
+	if($_SESSION['user']=='user'){
+		/*
+		 var_dump($conf->app_url.'/?action=empl');
+		 die();
+		 */
+		header("Location: " . $conf->app_url.'/?action=empl');
+	}
+}
 // ... przygotuj dane ...
 $q = new QueryDB();
 

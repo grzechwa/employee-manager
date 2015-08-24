@@ -1,5 +1,22 @@
 <?php
 require_once $conf->root_path . '/app/model/QueryDB.php';
+if(!isset($_SESSION))
+	session_start();
+
+if($_SESSION['isLogged'] == null){
+	header("Location: " . $conf->app_url);
+} else {
+	if($_SESSION['user']=='user'){
+		/*
+		 var_dump($conf->app_url.'/?action=empl');
+		 die();
+		 */
+		header("Location: " . $conf->app_url.'/?action=empl');
+	}
+}
+
+
+var_dump($_SESSION);
 echo 'Witaj, na stronie pracownikow <br />';
 
 // ... przygotuj dane ...
