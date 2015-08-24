@@ -2,6 +2,7 @@
 @lightGreen: #dfd;
 @lightBlue:  #ddf;
 @pureWhite:  #fff;
+@greyShadow: #888888;
  
 @defaultThemeColor:@lightGreen;
  
@@ -14,7 +15,7 @@
 }
 
 ul.nav li a, ul.nav li a:visited {
-    color: #fff !important;
+    color: @pureWhite !important;
 }
 
 ul.nav li a:hover, ul.nav li a:active {
@@ -22,9 +23,37 @@ ul.nav li a:hover, ul.nav li a:active {
 }
 
 ul.nav li.active a {
-    color: #pureWhite !important;
+    color: @pureWhite !important;
+}
 
 .title h1{
 	text-align: center;
 }
 
+.welcome_box {
+    width: 75%;
+    height: 250px;
+    margin: 0 auto;
+    background-color: @pureWhite;
+    box-shadow: 1px 3px 15px @greyShadow;
+}
+
+.image_box {
+	float: left;
+	width: 35%;
+    height: 350px;
+    margin: 0 auto;
+    background-color: @pureWhite;
+    box-shadow: 1px 3px 15px @greyShadow;	
+}
+.detail_box {
+	float: right;
+	width: 60%;
+    height: 350px;
+    margin: 0 auto;
+    background-color: @pureWhite;
+    box-shadow: 1px 3px 15px @greyShadow;	
+}
+.line {
+	margin-top: 100px;
+}

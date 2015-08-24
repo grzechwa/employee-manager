@@ -28,7 +28,7 @@ echo "Panel logowania";
 
     			
     			<!--  // 2. button z opcja zatwierdz  -->
-			<input type="submit" value="Zatwierdz" />   			
+			<input type="submit" value="Zatwierdz" class="btn btn-primary"/>   			
     		
 </form>
 </div>

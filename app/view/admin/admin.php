@@ -1,9 +1,11 @@
 <?php
 require_once $conf->root_path.'/app/model/QueryDB.php';
+include_once $conf->root_path.'/app/view/snip/header.php';
+
 if(!isset($_SESSION))
 	session_start();
 
-var_dump($_SESSION);
+// var_dump($_SESSION);
 /*
 echo $conf->app_url;
 echo '<br />';
@@ -21,8 +23,7 @@ if($_SESSION['isLogged'] == null){
 		header("Location: " . $conf->app_url.'/?action=empl');
 	}
 }
-var_dump($_SESSION);
-echo 'Witaj, na stronie admina <br />';
+// var_dump($_SESSION);
 
 // ... przygotuj dane ...
 
@@ -32,20 +33,22 @@ $listEmpl = $q->getShortInfoAll();
 
 // ... generuj widok ...
 ?>
-<table >
-<caption>Pracownicy<caption>
-<thead>
-<tr>
-<th>id</th>
-<th>Imie</th>
-<th>Nazwisko</th>
-<th>Stanowisko</th>
-<th>Zdjecie</th>
-<th>Szczegoly</th>
-<th>Usun</th>
-</tr>
-</thead>
-<tbody>
+<div class="container text-center">
+	<h1>Witaj na stronie administratora</h1>
+	</div>
+	<div class="container">
+	<table class="table table-bordered line">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Imię</th>
+        <th>Nazwisko</th>
+        <th>Stanowisko</th>
+        <th>Zdjęcie</th>
+        <th>Opcje</th>
+      </tr>
+    </thead>
+    <tbody>
 <?php 
 	// 1. tabela skrocona z buttonem szczegoy + button usun
 	foreach ($listEmpl as $empl) {
@@ -66,6 +69,7 @@ $listEmpl = $q->getShortInfoAll();
 ?>
 </tbody>
 </table>
+</div>
 <?php 
 	// 2. link lub button z opcja dodaj
 	echo '<br /><a href="?action=addEmpl" >Dodaj pracownika</a>';

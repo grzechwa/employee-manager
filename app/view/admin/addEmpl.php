@@ -1,5 +1,8 @@
 <?php
 require_once $conf->root_path . '/app/model/QueryDB.php';
+include_once $conf->root_path.'/app/view/snip/header.php';
+
+
 if(!isset($_SESSION))
 	session_start();
 
@@ -16,8 +19,8 @@ if($_SESSION['isLogged'] == null){
 }
 
 
-var_dump($_SESSION);
-echo 'Witaj, na stronie pracownikow <br />';
+// var_dump($_SESSION);
+// echo 'Witaj, na stronie pracownikow <br />';
 
 // ... przygotuj dane ...
 $q = new QueryDB ();
@@ -30,6 +33,11 @@ if($_REQUEST['action'] == 'add'){
 // 1. formularz z danym dla tabeli pracownik
 // 1a. walidacja imagefile
 ?>
+<div class="container">
+
+<div class="col-md-4 col-md-offset-4">
+
+
 <form action="<?php echo $conf->action_root; ?>add" method="post" enctype="multipart/form-data">
 			<label for="imie">Imie: </label> 
 			<input type="text" name="imie" required > <br />
@@ -73,6 +81,8 @@ if($_REQUEST['action'] == 'add'){
 			<input type="submit" value="Zatwierdz" />   			
     		
 </form>
+</div>
+</div>
 <?php
 
 // 3. link lub button z mozliwoscia powrotu do strony listy pracownikow
