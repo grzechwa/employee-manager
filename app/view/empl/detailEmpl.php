@@ -7,12 +7,12 @@ if(!isset($_SESSION))
 if($_SESSION['isLogged'] == null){
 	header("Location: " . $conf->app_url);
 } else {
-	if($_SESSION['user']=='user'){
+	if($_SESSION['user']=='admin'){
 		/*
 		 var_dump($conf->app_url.'/?action=empl');
 		 die();
 		 */
-		header("Location: " . $conf->app_url.'/?action=empl');
+		header("Location: " . $conf->app_url.'/?action=admin');
 	}
 }
 // ... przygotuj dane ...
@@ -32,7 +32,6 @@ $listEmplDet = $q->getFullInfoId($id);
 <th>Nazwisko</th>
 <th>Stanowisko</th>
 <th>Zdjecie</th>
-<th>Usun</th>
 </tr>
 </thead>
 <tbody>
@@ -49,7 +48,6 @@ $listEmplDet = $q->getFullInfoId($id);
 				echo '<td> <img src=" '.$conf->app_url .'/'. $value . '" alt="zdjecie pracownika" height="42" width="42"> </td>';
 			}
 		}
-		echo '<td><input type="submit" value="usun" /><br /></td>';
 		echo '</tr>';
 		echo '</form>';
 	}
@@ -57,8 +55,10 @@ $listEmplDet = $q->getFullInfoId($id);
 </tbody>
 </table>
 <?php 
-	// 2. link lub button z opcja dodaj
-	echo '<br /><a href="?action=addEmpl" >Dodaj pracownika</a>';
 
-	// 3. link lub button z mozliwoscia wylogowania
-	echo '<br /><a href="" >Wyloguj</a>';
+
+	// 3. link lub button z mozliwoscia powrotu do strony listy pracownikow
+	echo '<br /><a href=" '. $_SERVER['HTTP_REFERER'] .'" >Powrot</a>';
+	
+	// 4. link lub button z mozliwoscia wylogowania
+	echo '<br /><a href="?action=doLogout" >Wyloguj</a>'; 

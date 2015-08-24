@@ -34,9 +34,12 @@ switch ($action) {
 	case 'usun' :
         include_once $conf->root_path . '/app/model/DelDB.php';
 		break;
-	case 'detail' :
-		include_once $conf->root_path . '/app/view/admin/detailEmpl.php';
+	case 'detailAdmin' :
+		include_once $conf->root_path . '/app/view/admin/detailAdmin.php';
 	break;
+	case 'detailEmpl' :
+		include_once $conf->root_path . '/app/view/empl/detailEmpl.php';
+		break;
 	case 'goLogin' :
 		include_once $conf->root_path . '/app/view/security/login.php';
 	break;
@@ -44,7 +47,6 @@ switch ($action) {
 		include_once $conf->root_path . '/app/model/LogDB.php';
 	break;
 	case 'doLogout' :
-		// TODO: preniesc z kontrolera
 		session_start();
 		$_SESSION['isLogged'] = null;
 		session_destroy();

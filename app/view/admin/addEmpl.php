@@ -76,5 +76,8 @@ if($_REQUEST['action'] == 'add'){
 <?php
 
 // 3. link lub button z mozliwoscia powrotu do strony listy pracownikow
+echo '<br /><a href="?action=admin" >Powrot</a>';
+
 // 4. link lub button z mozliwoscia wylogowania
+echo '<br /><a href="?action=doLogout" >Wyloguj</a>';
 ?>

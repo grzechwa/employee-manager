@@ -49,7 +49,7 @@ $listEmpl = $q->getShortInfoAll();
 <?php 
 	// 1. tabela skrocona z buttonem szczegoy + button usun
 	foreach ($listEmpl as $empl) {
-		echo '<form action=" '. $conf->action_root . 'detail" method="post" >';
+		echo '<form action=" '. $conf->action_root . 'detailAdmin" method="post" >';
 		echo '<tr><input type="hidden" name="id" value="'.  $empl['id_pracownik']   .'"/>';
 		foreach ($empl as $key => $value){
 

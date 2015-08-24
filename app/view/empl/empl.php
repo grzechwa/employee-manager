@@ -31,16 +31,21 @@ $listEmpl = $q->getShortInfoAll();
 // ... generuj widok ...
 
 	// 1. tabela skrocona z buttonem szczegoy
-	foreach ($listEmpl as $empl) {
+foreach ($listEmpl as $empl) {
+		echo '<form action=" '. $conf->action_root . 'detailEmpl" method="post" >';
+		echo '<tr><input type="hidden" name="id" value="'.  $empl['id_pracownik']   .'"/>';
 		foreach ($empl as $key => $value){
+
 			if($key != 'image'){
-				echo $value . ' ';
+				echo '<td >' . $value . '</td>';
 			} else {
-				echo ' <img src=" '. $value . '" alt="zdjecie pracownika" height="42" width="42"> ';
+				echo '<td> <img src=" '.$conf->app_url .'/'. $value . '" alt="zdjecie pracownika" height="42" width="42"> </td>';
 			}
 		}
-		echo '<input type="submit" value="szczegoly" /> <br />';
-	}	
+		echo '<td> <input type="submit" value="szczegoly" /></td>';
+		echo '</tr>';
+		echo '</form>';
+	}
 
 
 	// 2. link lub button z mozliwoscia wylogowania

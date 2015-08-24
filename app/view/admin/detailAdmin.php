@@ -60,6 +60,10 @@ $listEmplDet = $q->getFullInfoId($id);
 <?php 
 	// 2. link lub button z opcja dodaj
 	echo '<br /><a href="?action=addEmpl" >Dodaj pracownika</a>';
+	
 
-	// 3. link lub button z mozliwoscia wylogowania
-	echo '<br /><a href="" >Wyloguj</a>';
+	// 3. link lub button z mozliwoscia powrotu do strony listy pracownikow
+	echo '<br /><a href=" '. $_SERVER['HTTP_REFERER'] .'" >Powrot</a>';
+
+	// 4. link lub button z mozliwoscia wylogowania
+	echo '<br /><a href="?action=doLogout" >Wyloguj</a>'; 
