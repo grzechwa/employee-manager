@@ -21,10 +21,13 @@ if((isset($_REQUEST['login'])&&(isset($_REQUEST['password'])))){
 				var_dump($conf->server_url.$conf->action_root .'admin');
 				var_dump($conf->server_url.'/app/view/admin/admin.php');
 			
-               
+                // include_once $conf->root_path.'/app/view/admin/admin.php';
+                // include_once $conf->server_url.$conf->action_root .'admin';
+                // include_once $conf->server_url.'/app/view/admin/admin.php';
 				header("Location: " . $conf->server_url.$conf->app_root.'/?action=admin');
 			} else { 
 				$_SESSION['user'] = 'user';
+                // include_once $conf->root_path.'/app/view/empl/empl.php';
                 header("Location: " . $conf->server_url.$conf->app_root.'/?action=empl');
 			}
 		}

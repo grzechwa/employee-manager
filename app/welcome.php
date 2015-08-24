@@ -23,5 +23,5 @@ foreach ($listEmpl as $empl) {
 
 
 echo "<br />W naszym zakladzie pracuje obecnie " . $count[0] . " pracownikow";
-echo "<br />Jesli jestes jednym z nich <a href=\" \" > zaloguj sie </a> <br />";
+echo "<br />Jesli jestes jednym z nich <a href=\"$conf->app_url?action=goLogin\" > zaloguj sie </a> <br />";
 echo "<br />Jesli chcesz zostac jednym z nich skontaktuj sie pod nr telefonu";
