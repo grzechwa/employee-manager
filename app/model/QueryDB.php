@@ -70,8 +70,21 @@ class QueryDB {
 	 * Wstawienie nowego uzytkownika 
 	 * na stronie admina
 	 */
-	public function addEmpl() {
-	
+	public function addEmpl($form) {
+		var_dump($form);
+
+		$this->db->connect();
+		//  VALUES (null ,0000-00-00,'aa','bb',null,'login','pass',1,2,null)
+		$insert = "INSERT INTO `pracownik`(`id_pracownik`, `data_urodzin`, `imie`, `nazwisko`, `data_pracy`, `login`, `password`, `id_dzial`, `id_stanowisko`, `image`)";
+		$values	= " VALUES (null ,'" . $form->dataur . "', '" . $form->imie . "', '" . $form->nazwisko . "', '" . $form->datazatr . "', '" . $form->login ."', '" . $form->pass . "', '" . $form->dzial . "' , '" . $form->stanowisko . "',null)";
+		echo $values . '<br />';	
+		$sql = $insert.$values;
+		
+		$conn = $this->db->getConn();
+		$result = mysqli_query($conn,$sql);
+		$this->db->disconnect();
+		
+		return $result;
 	}
 	
 	/**

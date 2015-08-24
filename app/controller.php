@@ -24,4 +24,10 @@ switch ($action) {
 	case 'admin' :
 		include_once $conf->root_path.'/app/view/admin/admin.php';
 		break;
+	case 'addEmpl' :
+		include_once $conf->root_path.'/app/view/admin/addEmpl.php';
+		break;
+	case 'add' :
+        include_once $conf->root_path . '/app/model/AddDB.php';
+        break;
 }
