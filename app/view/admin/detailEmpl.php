@@ -3,10 +3,10 @@ require_once $conf->root_path.'/app/model/QueryDB.php';
 echo 'Witaj, na stronie admina <br />';
 
 // ... przygotuj dane ...
-
 $q = new QueryDB();
 
-$listEmpl = $q->getShortInfoAll();
+$id = $_REQUEST['id'];
+$listEmplDet = $q->getFullInfoId($id);
 
 // ... generuj widok ...
 ?>
@@ -19,15 +19,14 @@ $listEmpl = $q->getShortInfoAll();
 <th>Nazwisko</th>
 <th>Stanowisko</th>
 <th>Zdjecie</th>
-<th>Szczegoly</th>
 <th>Usun</th>
 </tr>
 </thead>
 <tbody>
 <?php 
 	// 1. tabela skrocona z buttonem szczegoy + button usun
-	foreach ($listEmpl as $empl) {
-		echo '<form action=" '. $conf->action_root . 'detail" method="post" >';
+	foreach ($listEmplDet as $empl) {
+		echo '<form action=" '. $conf->action_root . 'usun" method="post" >';
 		echo '<tr><input type="hidden" name="id" value="'.  $empl['id_pracownik']   .'"/>';
 		foreach ($empl as $key => $value){
 
@@ -37,7 +36,7 @@ $listEmpl = $q->getShortInfoAll();
 				echo '<td> <img src=" '.$conf->app_url .'/'. $value . '" alt="zdjecie pracownika" height="42" width="42"> </td>';
 			}
 		}
-		echo '<td> <input type="submit" value="szczegoly" /></td>';
+		echo '<td><input type="submit" value="usun" /><br /></td>';
 		echo '</tr>';
 		echo '</form>';
 	}

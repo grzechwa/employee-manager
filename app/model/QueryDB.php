@@ -42,7 +42,7 @@ class QueryDB {
 	public function getShortInfoAll() {
 		$this->db->connect();
 		 
-		$select = "SELECT pracownik.imie, pracownik.nazwisko, stanowisko.nazwa_stanowiska, pracownik.image";
+		$select = "SELECT pracownik.id_pracownik, pracownik.imie, pracownik.nazwisko, stanowisko.nazwa_stanowiska, pracownik.image";
 		$from 	= " FROM pracownik";
 		$join	= " LEFT JOIN stanowisko";
 		$on		= " ON pracownik.id_stanowisko = stanowisko.id_stanowisko";
@@ -63,7 +63,29 @@ class QueryDB {
 	 * po wybraniu opcji -> szczegoly
 	 */
 	public function getFullInfoAll() {
+
+	}
 	
+	/**
+	 * Pobiera szczegolowy opis wskazanego pracownika
+	 * przez parametr id
+	 */
+	public function getFullInfoId($id) {
+		$this->db->connect();
+		
+		$select = "SELECT pracownik.id_pracownik, pracownik.imie, pracownik.nazwisko, stanowisko.nazwa_stanowiska, pracownik.image";
+		$from 	= " FROM pracownik";
+		$join	= " LEFT JOIN stanowisko";
+		$on		= " ON pracownik.id_stanowisko = stanowisko.id_stanowisko";
+		$where	= " WHERE pracownik.id_pracownik = '" . $id . "' ";
+		
+		$sql = $select.$from.$join.$on.$where;
+		
+		$conn = $this->db->getConn();
+		$result = mysqli_query($conn,$sql);
+		$this->db->disconnect();
+		
+		return $result;
 	}
 	
 	/**
@@ -71,7 +93,6 @@ class QueryDB {
 	 * na stronie admina
 	 */
 	public function addEmpl($form) {
-		var_dump($form);
 
 		$this->db->connect();
 		//  VALUES (null ,0000-00-00,'aa','bb',null,'login','pass',1,2,null)
@@ -90,8 +111,20 @@ class QueryDB {
 	/**
 	 * Ususniecie uzytkownika prze admina
 	 */
-	public function delEmpl() {
-	
+	public function delEmpl($id) {
+		$this->db->connect();
+
+		$delete = "DELETE FROM";
+		$from = " pracownik";
+		$where = " WHERE id_pracownik = '" . $id ."' ";
+		
+		$sql = $delete.$from.$where;
+		
+		$conn = $this->db->getConn();
+		$result = mysqli_query($conn,$sql);
+		$this->db->disconnect();
+		
+		return $result;
 	}
 	
 	

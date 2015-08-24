@@ -29,5 +29,11 @@ switch ($action) {
 		break;
 	case 'add' :
         include_once $conf->root_path . '/app/model/AddDB.php';
-        break;
+		break;
+	case 'usun' :
+        include_once $conf->root_path . '/app/model/DelDB.php';
+		break;
+	case 'detail' :
+		include_once $conf->root_path . '/app/view/admin/detailEmpl.php';
+	break;
 }
