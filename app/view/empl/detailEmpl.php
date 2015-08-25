@@ -31,11 +31,9 @@ $daneEmpl = array();    // dane danego pracownika do
 ?>
 <div class="container text-center">
 	<?php 
-	// 3. link lub button z mozliwoscia powrotu do strony listy pracownikow
-	echo '<p class="text-right line-mega-small"><a href=" '. $_SERVER['HTTP_REFERER'] .'" >Powrot</a>';
 	
 	// 4. link lub button z mozliwoscia wylogowania
-	echo ' | <a href="?action=doLogout" >Wyloguj</a> </p>';
+	echo '<p class="text-right line-mega-small"><a href="?action=doLogout" >Wyloguj</a> </p>';
 	?>
 	<h1>Witaj na stronie pracowników</h1>
 	</div>

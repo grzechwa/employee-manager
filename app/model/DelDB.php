@@ -4,8 +4,6 @@ if(isset($_REQUEST['id'])){
 $id = $_REQUEST['id'];
 $q = new QueryDB();
 
-var_dump($_REQUEST);
-
 
 if ($q->delEmpl($id)) {
 	include_once $conf->root_path.'/app/view/admin/admin.php';

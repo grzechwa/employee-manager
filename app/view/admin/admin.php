@@ -37,9 +37,8 @@ $listEmpl = $q->getShortInfoAll();
 
 	<?php 
 
-	echo '<p class="text-right line-mega-small"><a href=" '. $_SERVER['HTTP_REFERER'] .'" >Powrot</a>';
 	// 3. link lub button z mozliwoscia wylogowania
-	echo ' | <a href="?action=doLogout" >Wyloguj</a></p>';
+	echo '<div class="line-mega-small"><p class="text-right "><a href="?action=doLogout" >Wyloguj</a></p></div>';
 	?>
 
 

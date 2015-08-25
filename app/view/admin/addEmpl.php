@@ -29,65 +29,103 @@ if($_REQUEST['action'] == 'add'){
 } else {
 	
 }
+$dep = new QueryDB();
+$listDep = $dep->getDepartment();
+
+$pos = new QueryDB();
+$listPos = $pos->getWorkpositon();
 // ... generuj widok ...
 // 1. formularz z danym dla tabeli pracownik
 // 1a. walidacja imagefile
 ?>
-<div class="container">
+>
+			
+<div class="container"> 
+	<?php 
 
+	// 3. link lub button z mozliwoscia wylogowania
+	echo '<div class="line-mega-small">
+		<p class="text-right "><a href="?action=doLogout" >Wyloguj</a></p>
+		</div>';
+	?>
+<h1 class="text-center">
+<div class="line-small" >Dodaj użytkownika</div>
+</h1>
+
+</div>
+<div class="container">
 <div class="col-md-4 col-md-offset-4">
 
-
-<form action="<?php echo $conf->action_root; ?>add" method="post" enctype="multipart/form-data">
+<div class="line-small ">
+<form role="form" action="<?php echo $conf->action_root; ?>add" method="post" enctype="multipart/form-data">
+			<div class="form-group">
 			<label for="imie">Imie: </label> 
-			<input type="text" name="imie" required > <br />
+			<input type="text" name="imie" class="form-control" required > 
+			</div>
 			
+			<div class="form-group">
 			<label for="nazwisko">Nazwisko: </label> 
-			<input type="text" name="nazwisko" /> <br />
-
+			<input type="text" class="form-control" name="nazwisko" />
+			</div>
+			
+			<div class="form-group">
 			<label for="dataur">Data ur.: </label> 
-			<input type="text" name="dataur" /> <br /> 
+			<input type="text" class="form-control" name="dataur" /> 
+			</div>
 			
+			<div class="form-group">
 			<label for="datazatr">Data zatr: </label> 
-			<input type="text" name="datazatr" /> <br />
+			<input type="text" name="datazatr" class="form-control" />
+			</div>
 			
+			<div class="form-group">
 			<label for="login">Login: </label> 
-			<input type="text" name="login" /> <br /> 
+			<input type="text" name="login" class="form-control" /> 
+			</div>
 			
+			<div class="form-group">
 			<label for="pass">Haslo: </label> 
-			<input type="text" name="pass" /> <br /> 
+			<input type="password" name="pass" class="form-control"/> 
+			</div>
+
+
 			
+			
+				
+			<div class="form-group">
 			<label for="dzial">Dzial: </label> 
-			<select name="dzial"> 
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
+			<select name="dzial" class="form-control">
+			<?php
+			foreach ($listDep as $dep){
+				echo '<option value="'.$dep['id_dzial'].'">'.$dep['nazwa_dzialu'].'</option>';
+			}
+			?>
 			</select> <br />
+			</div>
 			
+			<div class="form-group">
 			<label for="stanowisko">Stanowisko: </label> 
-			<select name="stanowisko"> 
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
+			<select name="stanowisko" class="form-control"> 
+			<?php 
+			foreach ($listPos as $pos){
+				echo '<option value="'.$pos['id_stanowisko'].'">'.$pos['nazwa_stanowiska'].'</option>';
+			}
+			?>
 			</select> <br />
+			</div>
 			
+			<div class="form-group" class="form-control">
 			<label for="img" >Wstaw zdjecie: </label>
     			<input type="file" name="fileToUpload" id="fileToUpload">
-
+			</div>
     			
     			<!--  // 2. button z opcja zatwierdz  -->
-			<input type="submit" value="Zatwierdz" />   			
+			<input type="submit" value="Zatwierdz" class="btn btn-info" />   			
     		
 </form>
 </div>
 </div>
+</div>
 <?php
 
-// 3. link lub button z mozliwoscia powrotu do strony listy pracownikow
-echo '<br /><a href="?action=admin" >Powrot</a>';
-
-// 4. link lub button z mozliwoscia wylogowania
-echo '<br /><a href="?action=doLogout" >Wyloguj</a>';
 ?>

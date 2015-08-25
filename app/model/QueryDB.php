@@ -166,6 +166,44 @@ class QueryDB {
 	
 		return $result;
 	}
-
+	
+	/**
+	 * Zwraca object z zawatoscia tabeli dzial
+	 * dla option w formularzu dodawania uzytkownika
+	 * @return unknown
+	 */
+	public function getDepartment() {
+		$this->db->connect();
+			
+		$select = "SELECT *";
+		$from 	= " FROM dzial";
+		
+		$sql = $select.$from;
+		
+		$conn = $this->db->getConn();
+		$result = mysqli_query($conn,$sql);
+		$this->db->disconnect();
+		
+		return $result;
+	}
+	
+	/**
+	 * Zwraca object z zawatoscia tabeli stanowisko
+	 * dla option w formularzu dodawania uzytkownika
+	 */
+	public function getWorkpositon() {
+		$this->db->connect();
+			
+		$select = "SELECT *";
+		$from 	= " FROM stanowisko";
+		
+		$sql = $select.$from;
+		
+		$conn = $this->db->getConn();
+		$result = mysqli_query($conn,$sql);
+		$this->db->disconnect();
+		
+		return $result;
+	}
 
 }

@@ -32,11 +32,10 @@ $daneEmpl = array();    // dane danego pracownika do
 ?>
 <div class="container text-center">
 	<?php 
-	// 3. link lub button z mozliwoscia powrotu do strony listy pracownikow
-	echo '<p class="text-right line-mega-small"><a href=" '. $_SERVER['HTTP_REFERER'] .'" >Powrot</a>';
-	
 	// 4. link lub button z mozliwoscia wylogowania
-	echo ' | <a href="?action=doLogout" >Wyloguj</a> </p>';
+	
+	echo '<div class="line-mega-small"><p class="text-right"><a href="?action=doLogout" >Wyloguj</a> </p></div>';
+	
 	?>
 
 
@@ -47,10 +46,11 @@ $daneEmpl = array();    // dane danego pracownika do
 <table class="table table-bordered line">
     <tbody>
 <?php 
+
 	// 1. tabela skrocona z buttonem szczegoy + button usun
 	// TODO: przetworzyc na metode zwracajaca array_value ($daneEmpl) w modelu
 	foreach ($listEmplDet as $empl) {
-		echo '<form action=" '. $conf->action_root . 'usun" method="post" >';
+		// echo '<form action=" '. $conf->action_root . 'usun" method="post" >';
 		// echo '<tr><input type="hidden" name="id" value="'.  $empl['id_pracownik']   .'"/>';
 		foreach ($empl as $key => $value){
 			$daneEmpl[] = $value;
@@ -60,9 +60,8 @@ $daneEmpl = array();    // dane danego pracownika do
 				// echo '<td> <img src=" '.$conf->app_url .'/'. $value . '" alt="zdjecie pracownika" height="42" width="42"> </td>';
 			}
 		}
-		echo '<input type="submit" value="usun" />';
 		// echo '</tr>';
-		echo '</form>';
+		// echo '</form>';
 	}
 ?>
 </tbody>
@@ -145,12 +144,8 @@ consequat. </span>
 	// 2. link lub button z opcja dodaj
 	echo '<p class="text-center line-small" >
 		<a href="?action=addEmpl" class="btn btn-info btn-lg" >Dodaj pracownika</a>
-		<a href="'. $conf->action_root . 'usun" class="btn btn-info btn-lg" >Usun pracownika</a>
-		
-		
+		<a href="'. $conf->action_root . 'usun&id=' . $_REQUEST['id'] .'" class="btn btn-info btn-lg" >Usun pracownika</a>
 		</p>';
-	var_dump($_REQUEST);
-echo $conf->action_root . 'usun';
 ?>
 </div>
 
