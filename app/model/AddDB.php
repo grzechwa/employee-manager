@@ -30,24 +30,42 @@ $file = array();
 $form = $_REQUEST;
 $file = $_FILES;
 
-// TODO: dodac walidacje do rozszerznia
 $filename = 'res/img/empl/' . $_FILES['imgempl']['name'];
 $filetemp = $file['imgempl']['tmp_name'];
 
-var_dump($form);
-var_dump($file);
-var_dump($filename);
-// var_dump($file['imgempl']['tmp_name']);
-var_dump($filetemp);
+
+// TODO: poprawic kod walidacji image
+// przeniesc kod html do widoku
+$result = @exif_imagetype($filetemp);
+	switch($result) {
+		case IMAGETYPE_GIF:
+		case IMAGETYPE_JPEG:
+		case IMAGETYPE_PNG:
+		break;
+	default:
+}
 
 
 $addForm = new AddForm($form);
-
 $q = new QueryDB();
 
 if ($q->addEmpl($addForm, $filename)) {
 		// uwaga na uprawnienia do uplodu
-		move_uploaded_file($filetemp, $conf->root_path . '/' .$filename);
+		if(move_uploaded_file($filetemp, $conf->root_path . '/' .$filename)){
+			echo '<div><div class="text-center" style="padding-top: 5%">
+				<button class="btn btn-success :active"> 
+				<h4 >Dodano uzytkownika
+				</button>
+				<h4>
+				</div>';
+		} else {
+			echo '<div><div class="text-center" style="padding-top: 5%">
+				<button class="btn btn-danger :active"> 
+				<h4 >Nie Dodano uzytkownika
+				</button>
+				<h4>
+				</div>';
+		}
 		include_once $conf->root_path.'/app/view/admin/addEmpl.php';
 } else {
 		include_once $conf->root_path.'/app/view/error.php';

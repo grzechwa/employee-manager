@@ -17,7 +17,7 @@ if(isset($_REQUEST['action'])){
 switch ($action) {
 	default : 
 		include_once $conf->root_path.'/app/welcome.php';
-		//header("Location: " . $conf->app_url . '/app/welcome.php');
+//header("Location: " . $conf->app_url . '/app/welcome.php');
 		break;
 	case 'empl' :
 		include_once $conf->root_path.'/app/view/empl/empl.php';

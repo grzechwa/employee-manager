@@ -24,14 +24,16 @@ if($_SESSION['isLogged'] == null){
 
 // ... przygotuj dane ...
 $q = new QueryDB ();
+/*
 if(isset($_REQUEST['action'])){
 	if($_REQUEST['action'] == 'add'){
 		// TODO: walidacja formularzy!
-		echo 'dodano uzytkownika';
+		
 	} else {
 		
 	}
 }
+*/
 $dep = new QueryDB();
 $listDep = $dep->getDepartment();
 
@@ -41,7 +43,7 @@ $listPos = $pos->getWorkpositon();
 // 1. formularz z danym dla tabeli pracownik
 // 1a. walidacja imagefile
 ?>
->
+
 			
 <div class="container"> 
 	<?php 
