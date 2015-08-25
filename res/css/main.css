@@ -20,11 +20,14 @@ ul.nav li.active a {
   text-align: center;
 }
 .welcome_box {
-  width: 75%;
-  height: 250px;
+  width: 70%;
+  height: 350px;
   margin: 0 auto;
   background-color: #ffffff;
   box-shadow: 1px 3px 15px #888888;
+}
+.welcome_box img {
+  float: right;
 }
 .image_box {
   float: left;
@@ -44,4 +47,11 @@ ul.nav li.active a {
 }
 .line {
   margin-top: 100px;
+}
+.line-small {
+  margin-top: 50px;
+}
+.form_center {
+  margin: 0 auto;
+  width: 80%;
 }
