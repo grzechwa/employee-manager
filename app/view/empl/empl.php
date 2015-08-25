@@ -33,18 +33,24 @@ $listEmpl = $q->getShortInfoAll();
 	// 1. tabela skrocona z buttonem szczegoy
 	?>
 	<div class="container text-center">
+	
+	<?php 
+	// 2. link lub button z mozliwoscia wylogowania
+		echo '<p class="text-right line-mega-small"><a href="?action=doLogout" >Wyloguj</a></p>'; 
+	?> 
 	<h1>Witaj na stronie pracowników</h1>
 	</div>
+	
 	<div class="container">
-	<table class="table table-bordered line">
-    <thead>
+	<table class="table table-bordered table-stripped table-hover text-center line">
+    <thead >
       <tr>
-        <th>#</th>
-        <th>Imię</th>
-        <th>Nazwisko</th>
-        <th>Stanowisko</th>
-        <th>Zdjęcie</th>
-        <th>Opcje</th>
+        <th class="text-center lead">#</th>
+        <th class="text-center lead">Imię</th>
+        <th class="text-center lead">Nazwisko</th>
+        <th class="text-center lead">Stanowisko</th>
+        <th class="text-center lead">Zdjęcie</th>
+        <th class="text-center lead">Opcje</th>
       </tr>
     </thead>
     <tbody>
@@ -52,7 +58,7 @@ $listEmpl = $q->getShortInfoAll();
 	foreach ($listEmpl as $empl) {
 		
 		// echo '<form action=" '. $conf->action_root . 'detailEmpl" method="post" >';
-		 echo '<form action=" '. $conf->action_root . 'detailEmpl " method="post" >';
+		echo '<form action=" '. $conf->action_root . 'detailEmpl " method="post" >';
 		echo '<tr><input type="hidden" name="id" value="'.  $empl['id_pracownik']   .'"/>';
 		foreach ($empl as $key => $value){
 
@@ -62,7 +68,7 @@ $listEmpl = $q->getShortInfoAll();
 				echo '<td> <img src=" '.$conf->app_url .'/'. $value . '" alt="zdjecie pracownika" height="42" width="42"> </td>';
 			}
 		}
-		echo '<td> <input type="submit" value="szczegoly" /></td>';
+		echo '<td> <input type="submit" value="szczególy" /></td>';
 		echo '</tr>';
 		echo '</form>';
 	}
@@ -71,6 +77,4 @@ $listEmpl = $q->getShortInfoAll();
 </table>
 </div>
 <?php 
-
-	// 2. link lub button z mozliwoscia wylogowania
-	echo '<br /><a href="?action=doLogout" >Wyloguj</a>'; 
+include_once $conf->root_path.'/app/view/snip/footer.php';

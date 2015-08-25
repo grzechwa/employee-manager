@@ -4,6 +4,7 @@ if(isset($_REQUEST['id'])){
 $id = $_REQUEST['id'];
 $q = new QueryDB();
 
+var_dump($_REQUEST);
 
 
 if ($q->delEmpl($id)) {

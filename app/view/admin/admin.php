@@ -34,18 +34,32 @@ $listEmpl = $q->getShortInfoAll();
 // ... generuj widok ...
 ?>
 <div class="container text-center">
+
+	<?php 
+
+	echo '<p class="text-right line-mega-small"><a href=" '. $_SERVER['HTTP_REFERER'] .'" >Powrot</a>';
+	// 3. link lub button z mozliwoscia wylogowania
+	echo ' | <a href="?action=doLogout" >Wyloguj</a></p>';
+	?>
+
+
+
 	<h1>Witaj na stronie administratora</h1>
 	</div>
 	<div class="container">
-	<table class="table table-bordered line">
+	
+
+	
+	
+	<table class="table table-bordered table-stripped table-hover text-center line">
     <thead>
       <tr>
-        <th>#</th>
-        <th>Imię</th>
-        <th>Nazwisko</th>
-        <th>Stanowisko</th>
-        <th>Zdjęcie</th>
-        <th>Opcje</th>
+        <th class="text-center lead">#</th>
+        <th class="text-center lead">Imię</th>
+        <th class="text-center lead">Nazwisko</th>
+        <th class="text-center lead">Stanowisko</th>
+        <th class="text-center lead">Zdjęcie</th>
+        <th class="text-center lead">Opcje</th
       </tr>
     </thead>
     <tbody>
@@ -62,17 +76,20 @@ $listEmpl = $q->getShortInfoAll();
 				echo '<td> <img src=" '.$conf->app_url .'/'. $value . '" alt="zdjecie pracownika" height="42" width="42"> </td>';
 			}
 		}
-		echo '<td> <input type="submit" value="szczegoly" /></td>';
+		echo '<td> <input type="submit" value="szczególy" /></td>';
 		echo '</tr>';
 		echo '</form>';
 	}
 ?>
 </tbody>
 </table>
+<?php 
+
+// 2. link lub button z opcja dodaj
+echo '<p class="text-center" ><a href="?action=addEmpl" class="btn btn-info btn-lg" >Dodaj pracownika</a></p>';
+
+?>
+
 </div>
 <?php 
-	// 2. link lub button z opcja dodaj
-	echo '<br /><a href="?action=addEmpl" >Dodaj pracownika</a>';
-
-	// 3. link lub button z mozliwoscia wylogowania
-	echo '<br /><a href="?action=doLogout" >Wyloguj</a>';
+include_once $conf->root_path.'/app/view/snip/footer.php';

@@ -30,6 +30,13 @@ $daneEmpl = array();    // dane danego pracownika do
 // ... generuj widok ...
 ?>
 <div class="container text-center">
+	<?php 
+	// 3. link lub button z mozliwoscia powrotu do strony listy pracownikow
+	echo '<p class="text-right line-mega-small"><a href=" '. $_SERVER['HTTP_REFERER'] .'" >Powrot</a>';
+	
+	// 4. link lub button z mozliwoscia wylogowania
+	echo ' | <a href="?action=doLogout" >Wyloguj</a> </p>';
+	?>
 	<h1>Witaj na stronie pracowników</h1>
 	</div>
 	<div class="container">
@@ -37,6 +44,7 @@ $daneEmpl = array();    // dane danego pracownika do
     <tbody>
 <?php 
 	// 1. tabela skrocona z buttonem szczegoy + button usun
+	// TODO: przetworzyc na metode zwracajaca array_value ($daneEmpl) w modelu
 	foreach ($listEmplDet as $empl) {
 		echo '<form action=" '. $conf->action_root . 'usun" method="post" >';
 		echo '<tr><input type="hidden" name="id" value="'.  $empl['id_pracownik']   .'"/>';
@@ -59,56 +67,54 @@ $daneEmpl = array();    // dane danego pracownika do
 <!-- zrobic to w petli -->
 <div class="container">
 	<div class="image_box" >
-		<img src=" <?php echo $conf->app_url .'/'. $daneEmpl[4]; ?> " alt="zdjecie pracownika" height="auto" width="auto">;
+		<img src="<?php echo $conf->app_url .'/'. $daneEmpl[4]; ?> " 
+		alt="zdjecie pracownika" height="350px" width="auto" class="center-block">;
 	</div>
-	<div class="detail_box" >
+	<div class="detail_box lead" >
+	
+	<div style="padding: 20px">
 	<div class="col-md-4 col-sm-12 col-xs-12">
 	Imię:
 	</div>
 	<div class="col-md-8 col-sm-12 col-xs-12">
-	<?php echo $daneEmpl[1];?>
+	<em><?php echo $daneEmpl[1];?></em>
 	</div>
 
 	<div class="col-md-4 col-sm-12 col-xs-12">
 	Nazwisko:
 	</div>
 	<div class="col-md-8 col-sm-12 col-xs-12">
-	<?php echo $daneEmpl[2];?>
+	<em><?php echo $daneEmpl[2];?></em>
 	</div>
 
 	<div class="col-md-4 col-sm-12 col-xs-12">
 	Stanowisko:
 	</div>
 	<div class="col-md-8 col-sm-12 col-xs-12">
-	<?php echo $daneEmpl[3];?>
+	<em><?php echo $daneEmpl[3];?></em>
 	</div>
 	
 	<div class="col-md-4 col-sm-12 col-xs-12">
 	Dzial:
 	</div>
 	<div class="col-md-8 col-sm-12 col-xs-12">
-	<?php echo $daneEmpl[3];?>
+	<em><?php echo $daneEmpl[3];?></em>
 	</div>
 	
 	<div class="col-md-4 col-sm-12 col-xs-12">
 	Data urodzenia:
 	</div>
 	<div class="col-md-8 col-sm-12 col-xs-12">
-	<?php echo $daneEmpl[3];?>
+	<em><?php echo $daneEmpl[3];?></em>
 	</div>
 
 	<div class="col-md-4 col-sm-12 col-xs-12">
 	Zainteresowania
 	</div>
 	<div class="col-md-8 col-sm-12 col-xs-12">
-	<?php echo $daneEmpl[3];?>
+	<em><?php echo $daneEmpl[3];?></em>
 	</div>
 	
-	<div class="col-md-4 col-sm-12 col-xs-12">
-	Opis pracownika:
-	</div>
-	<div class="col-md-8 col-sm-12 col-xs-12">
-	<?php echo $daneEmpl[3];?>
 	</div>
 	
 	
@@ -118,10 +124,4 @@ $daneEmpl = array();    // dane danego pracownika do
 
 
 <?php 
-
-
-	// 3. link lub button z mozliwoscia powrotu do strony listy pracownikow
-	echo '<br /><a href=" '. $_SERVER['HTTP_REFERER'] .'" >Powrot</a>';
-	
-	// 4. link lub button z mozliwoscia wylogowania
-	echo '<br /><a href="?action=doLogout" >Wyloguj</a>'; 
+include_once $conf->root_path.'/app/view/snip/footer.php';

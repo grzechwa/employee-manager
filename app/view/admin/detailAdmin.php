@@ -31,6 +31,16 @@ $daneEmpl = array();    // dane danego pracownika do
 // ... generuj widok ...
 ?>
 <div class="container text-center">
+	<?php 
+	// 3. link lub button z mozliwoscia powrotu do strony listy pracownikow
+	echo '<p class="text-right line-mega-small"><a href=" '. $_SERVER['HTTP_REFERER'] .'" >Powrot</a>';
+	
+	// 4. link lub button z mozliwoscia wylogowania
+	echo ' | <a href="?action=doLogout" >Wyloguj</a> </p>';
+	?>
+
+
+
 	<h1>Witaj na stronie administratora</h1>
 	</div>
 	<div class="container">
@@ -38,9 +48,10 @@ $daneEmpl = array();    // dane danego pracownika do
     <tbody>
 <?php 
 	// 1. tabela skrocona z buttonem szczegoy + button usun
+	// TODO: przetworzyc na metode zwracajaca array_value ($daneEmpl) w modelu
 	foreach ($listEmplDet as $empl) {
 		echo '<form action=" '. $conf->action_root . 'usun" method="post" >';
-		echo '<tr><input type="hidden" name="id" value="'.  $empl['id_pracownik']   .'"/>';
+		// echo '<tr><input type="hidden" name="id" value="'.  $empl['id_pracownik']   .'"/>';
 		foreach ($empl as $key => $value){
 			$daneEmpl[] = $value;
 			if($key != 'image'){
@@ -49,8 +60,8 @@ $daneEmpl = array();    // dane danego pracownika do
 				// echo '<td> <img src=" '.$conf->app_url .'/'. $value . '" alt="zdjecie pracownika" height="42" width="42"> </td>';
 			}
 		}
-		echo '<td><input type="submit" value="usun" /><br /></td>';
-		echo '</tr>';
+		echo '<input type="submit" value="usun" />';
+		// echo '</tr>';
 		echo '</form>';
 	}
 ?>
@@ -60,70 +71,88 @@ $daneEmpl = array();    // dane danego pracownika do
 
 <div class="container">
 	<div class="image_box" >
-		<img src=" <?php echo $conf->app_url .'/'. $daneEmpl[4]; ?> " alt="zdjecie pracownika" height="auto" width="auto">;
-	</div>
-	<div class="detail_box" >
+		<img src="<?php echo $conf->app_url .'/'. $daneEmpl[4]; ?> " 
+		alt="zdjecie pracownika" height="350px" width="auto" class="center-block">;
+	</div>	
+	<div class="detail_box lead" >
+	
+<div style="padding: 20px">
 	<div class="col-md-4 col-sm-12 col-xs-12">
 	Imię:
 	</div>
 	<div class="col-md-8 col-sm-12 col-xs-12">
-	<?php echo $daneEmpl[1];?>
+	<em><?php echo $daneEmpl[1];?></em>
 	</div>
 
 	<div class="col-md-4 col-sm-12 col-xs-12">
 	Nazwisko:
 	</div>
 	<div class="col-md-8 col-sm-12 col-xs-12">
-	<?php echo $daneEmpl[2];?>
+	<em><?php echo $daneEmpl[2];?></em>
 	</div>
 
 	<div class="col-md-4 col-sm-12 col-xs-12">
 	Stanowisko:
 	</div>
 	<div class="col-md-8 col-sm-12 col-xs-12">
-	<?php echo $daneEmpl[3];?>
+	<em><?php echo $daneEmpl[3];?></em>
 	</div>
 	
 	<div class="col-md-4 col-sm-12 col-xs-12">
 	Dzial:
 	</div>
 	<div class="col-md-8 col-sm-12 col-xs-12">
-	<?php echo $daneEmpl[3];?>
+	<em><?php echo $daneEmpl[3];?></em>
 	</div>
 	
 	<div class="col-md-4 col-sm-12 col-xs-12">
 	Data urodzenia:
 	</div>
 	<div class="col-md-8 col-sm-12 col-xs-12">
-	<?php echo $daneEmpl[3];?>
+	<em><?php echo $daneEmpl[3];?></em>
 	</div>
 
 	<div class="col-md-4 col-sm-12 col-xs-12">
 	Zainteresowania
 	</div>
 	<div class="col-md-8 col-sm-12 col-xs-12">
-	<?php echo $daneEmpl[3];?>
+	<em><?php echo $daneEmpl[3];?></em>
 	</div>
 	
 	<div class="col-md-4 col-sm-12 col-xs-12">
-	Opis pracownika:
+	Opis pracownika
 	</div>
 	<div class="col-md-8 col-sm-12 col-xs-12">
-	<?php echo $daneEmpl[3];?>
+	
+	<!-- W bazie danych dodac pole description niewielka ilość danych
+		albo tutaj umieścić fragment z linkiem do całości
+	 -->
+	<span class="small"><em><?php // echo $daneEmpl[3];?>
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. </span>
+	</em>
+	</div>
+	
 	</div>
 	
 	
 	</div>
 	</div>
+	<?php 
+
+	// 2. link lub button z opcja dodaj
+	echo '<p class="text-center line-small" >
+		<a href="?action=addEmpl" class="btn btn-info btn-lg" >Dodaj pracownika</a>
+		<a href="'. $conf->action_root . 'usun" class="btn btn-info btn-lg" >Usun pracownika</a>
+		
+		
+		</p>';
+	var_dump($_REQUEST);
+echo $conf->action_root . 'usun';
+?>
 </div>
 
 <?php 
-	// 2. link lub button z opcja dodaj
-	echo '<br /><a href="?action=addEmpl" >Dodaj pracownika</a>';
-	
-
-	// 3. link lub button z mozliwoscia powrotu do strony listy pracownikow
-	echo '<br /><a href=" '. $_SERVER['HTTP_REFERER'] .'" >Powrot</a>';
-
-	// 4. link lub button z mozliwoscia wylogowania
-	echo '<br /><a href="?action=doLogout" >Wyloguj</a>'; 
+	include_once $conf->root_path.'/app/view/snip/footer.php';
