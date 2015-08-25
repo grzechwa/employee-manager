@@ -24,10 +24,13 @@ if($_SESSION['isLogged'] == null){
 
 // ... przygotuj dane ...
 $q = new QueryDB ();
-if($_REQUEST['action'] == 'add'){
-	echo 'dodano uzytkownika';
-} else {
-	
+if(isset($_REQUEST['action'])){
+	if($_REQUEST['action'] == 'add'){
+		// TODO: walidacja formularzy!
+		echo 'dodano uzytkownika';
+	} else {
+		
+	}
 }
 $dep = new QueryDB();
 $listDep = $dep->getDepartment();
@@ -115,14 +118,16 @@ $listPos = $pos->getWorkpositon();
 			</div>
 			
 			<div class="form-group" class="form-control">
-			<label for="img" >Wstaw zdjecie: </label>
-    			<input type="file" name="fileToUpload" id="fileToUpload">
+			<label for="imgempl" >Wstaw zdjęcie: </label>
+    			<input type="file" name="imgempl" id="imgempl">
 			</div>
     			
     			<!--  // 2. button z opcja zatwierdz  -->
 			<input type="submit" value="Zatwierdz" class="btn btn-info" />   			
     		
 </form>
+
+
 </div>
 </div>
 </div>

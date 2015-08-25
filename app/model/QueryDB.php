@@ -110,13 +110,12 @@ class QueryDB {
 	 * Wstawienie nowego uzytkownika 
 	 * na stronie admina
 	 */
-	public function addEmpl($form) {
+	public function addEmpl($form, $file) {
 
 		$this->db->connect();
 		//  VALUES (null ,0000-00-00,'aa','bb',null,'login','pass',1,2,null)
 		$insert = "INSERT INTO `pracownik`(`id_pracownik`, `data_urodzin`, `imie`, `nazwisko`, `data_pracy`, `login`, `password`, `id_dzial`, `id_stanowisko`, `image`)";
-		$values	= " VALUES (null ,'" . $form->dataur . "', '" . $form->imie . "', '" . $form->nazwisko . "', '" . $form->datazatr . "', '" . $form->login ."', '" . $form->pass . "', '" . $form->dzial . "' , '" . $form->stanowisko . "',null)";
-		echo $values . '<br />';	
+		$values	= " VALUES (null ,'" . $form->dataur . "', '" . $form->imie . "', '" . $form->nazwisko . "', '" . $form->datazatr . "', '" . $form->login ."', '" . $form->pass . "', '" . $form->dzial . "' , '" . $form->stanowisko . "','" . $file . "')";
 		$sql = $insert.$values;
 		
 		$conn = $this->db->getConn();
