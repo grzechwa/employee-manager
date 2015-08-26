@@ -26,24 +26,25 @@ if($_SESSION['isLogged'] == null){
 // var_dump($_SESSION);
 
 // ... przygotuj dane ...
-
 $q = new QueryDB();
-$start = 0;
-$end = 10;
-$id=0;
-$ile = $_SESSION['ile'][0];
-var_dump($_SESSION['ile'][0]);
+
+// TODO: paginacje przeniesc do metody lub
+// klasy typu Utilities
+// TODO: pierwsze użycie brak id
+$start 	= 0;
+$end 	= 5;
+$id		= 0;
+
+// liczba pracownikow w firmie
+// obiekt przekazany ze strony welcome
+$many = $_SESSION['ile'][0];
 if(isset($_GET['id']))
 {
-	$id=$_GET['id'];
+	$id=intval($_GET['id']);
 	$start=($id-1)*$end;
 }
-var_dump(intval($ile));
-var_dump($end);
-$total=ceil(intval($ile/$end));
-
-
 $listEmpl = $q->getShortInfoAll($start, $end);
+$total=ceil(intval($many/$end));
 
 // ... generuj widok ...
 ?>
@@ -55,14 +56,9 @@ $listEmpl = $q->getShortInfoAll($start, $end);
 	echo '<div class="line-mega-small"><p class="text-right "><a href="?action=doLogout" >Wyloguj</a></p></div>';
 	?>
 
-
-
 	<h1>Witaj na stronie administratora</h1>
 	</div>
 	<div class="container">
-	
-
-	
 	
 	<table class="table table-bordered table-stripped table-hover text-center line">
     <thead>
@@ -96,20 +92,35 @@ $listEmpl = $q->getShortInfoAll($start, $end);
 ?>
 </tbody>
 </table>
+<!-- paginacja -->
+<div class="col-md-4 col-sm-6 col-xs-12 text-right" >
 <?php 
 if($id>1)
 {
-	echo "<a href='?action=admin&id=".($id-1)."' class='button'>PREVIOUS</a>";
+	echo "<a href='?action=admin&id=".($id-1)."' class='pagination'>POPRZEDNI</a>";
 }
+?>
+</div>
+<div class="col-md-4 col-sm-6 col-xs-12">
+</div>
+<div class='col-md-4 col-sm-6 col-xs-12 ' >
+<?php 
 if($id!=$total)
 {
-	echo "<a href='?action=admin&id=".($id+1)."' class='button'>NEXT</a>";
+	echo "<a href='?action=admin&id=".($id+1)."' class='pagination'>NASTĘPNY</a>";
 }
+?>
+</div>
+<!-- koniec paginacji -->
+<!-- butoon dodaj pracownika -->
+<div class="col-md-12 col-sm-6 col-xs-12 " >
+<?php 
 // 2. link lub button z opcja dodaj
 echo '<p class="text-center" ><a href="?action=addEmpl" class="btn btn-info btn-lg" >Dodaj pracownika</a></p>';
 
 ?>
-
+</div>
+<!-- koniec dodaj pacownika -->
 </div>
 <?php 
 include_once $conf->root_path.'/app/view/snip/footer.php';

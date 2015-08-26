@@ -25,8 +25,22 @@ if($_SESSION['isLogged'] == null){
 // ... przygotuj dane ...
 
 $q = new QueryDB();
+// TODO: paginacje przeniesc do metody lub
+// klasy typu Utilities
+$start 	= 0;
+$end 	= 5;
+$id		= 0;
 
-$listEmpl = $q->getShortInfoAll();
+// liczba pracownikow w firmie
+// obiekt przekazany ze strony welcome
+$many = $_SESSION['ile'][0];
+if(isset($_GET['id']))
+{
+	$id=intval($_GET['id']);
+	$start=($id-1)*$end;
+}
+$listEmpl = $q->getShortInfoAll($start,$end);
+$total=ceil(intval($many/$end));
 
 // ... generuj widok ...
 
@@ -75,6 +89,27 @@ $listEmpl = $q->getShortInfoAll();
 ?>
 </tbody>
 </table>
+
+<!-- paginacja -->
+<div class="col-md-4 col-sm-6 col-xs-12 text-right" >
+<?php 
+if($id>1)
+{
+	echo "<a href='?action=empl&id=".($id-1)."' class='pagination'>POPRZEDNI</a>";
+}
+?>
+</div>
+<div class="col-md-4 col-sm-6 col-xs-12">
+</div>
+<div class='col-md-4 col-sm-6 col-xs-12 ' >
+<?php 
+if($id!=$total)
+{
+	echo "<a href='?action=empl&id=".($id+1)."' class='pagination'>NASTĘPNY</a>";
+}
+?>
+</div>
+
 </div>
 <?php 
 include_once $conf->root_path.'/app/view/snip/footer.php';

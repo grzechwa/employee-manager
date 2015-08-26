@@ -28,26 +28,30 @@ echo "<h3>Nasza firma jest zdecydowanym liderem innowacyjności na rynku. Zatrud
 ?>
 <div class="col-md-6 col-sm-6 col-xs-12 line" >
 <?php 
-echo "<p class=\"text-right \">Jesli chcesz zostac jednym z nich zadzwoń pod 
-<button class=\"btn btn-info btn-lg\">nr telefonu</button></p></div>
-		<p class=\"test\" style=\"display: none\">666-666-666</p>";
+echo "<p class='text-right '><span style='padding-right: 20px; font-size: large'>Jesli chcesz zostac jednym z nich zadzwoń pod</span> 
+<button class='btn btn-info btn-lg'>nr telefonu</button></p>
+		<p class='text-right lead' id='phone' style='display: none'><stron>666-666-666</p>
+		</div>";
 ?>
 <div class="col-md-12 col-sm-6 col-xs-12">
 <?php
-echo "<p class=\"text-right \">Jesli jestes jednym z nich   
-<a href=\"$conf->app_url?action=goLogin\" >
-<span class=\"btn btn-info btn-lg\"> zaloguj się<spna></p></div>";
+echo "<p class='text-right '><span style='padding-right: 20px; font-size: large'>Jesli jestes jednym z nich</span>   
+<a href='$conf->app_url?action=goLogin' >
+<span class='btn btn-info btn-lg'> zaloguj się<spna></p></div>";
 
 
 ?>
 
 </div>
+
+<?php 
+include_once $conf->root_path.'/app/view/snip/footer.php';
+?>
 <script>
 $(document).ready(function(){
-	 $("button").click(function(){
-        $(".test").toggle(1000);
-    });
+	$("button").click(function(){
+		$("p#phone").toggle(1000);
+	});
 });
 </script>
 <?php 
-include_once $conf->root_path.'/app/view/snip/footer.php';
