@@ -28,8 +28,22 @@ if($_SESSION['isLogged'] == null){
 // ... przygotuj dane ...
 
 $q = new QueryDB();
+$start = 0;
+$end = 10;
+$id=0;
+$ile = $_SESSION['ile'][0];
+var_dump($_SESSION['ile'][0]);
+if(isset($_GET['id']))
+{
+	$id=$_GET['id'];
+	$start=($id-1)*$end;
+}
+var_dump(intval($ile));
+var_dump($end);
+$total=ceil(intval($ile/$end));
 
-$listEmpl = $q->getShortInfoAll();
+
+$listEmpl = $q->getShortInfoAll($start, $end);
 
 // ... generuj widok ...
 ?>
@@ -83,7 +97,14 @@ $listEmpl = $q->getShortInfoAll();
 </tbody>
 </table>
 <?php 
-
+if($id>1)
+{
+	echo "<a href='?action=admin&id=".($id-1)."' class='button'>PREVIOUS</a>";
+}
+if($id!=$total)
+{
+	echo "<a href='?action=admin&id=".($id+1)."' class='button'>NEXT</a>";
+}
 // 2. link lub button z opcja dodaj
 echo '<p class="text-center" ><a href="?action=addEmpl" class="btn btn-info btn-lg" >Dodaj pracownika</a></p>';
 

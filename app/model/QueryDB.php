@@ -39,15 +39,17 @@ class QueryDB {
 	 * na strone powitalna
 	 * @return mysqli object
 	 */
-	public function getShortInfoAll() {
+	public function getShortInfoAll($start, $end) {
 		$this->db->connect();
 		 
 		$select = "SELECT pracownik.id_pracownik, pracownik.imie, pracownik.nazwisko, stanowisko.nazwa_stanowiska, pracownik.image";
 		$from 	= " FROM pracownik";
 		$join	= " LEFT JOIN stanowisko";
 		$on		= " ON pracownik.id_stanowisko = stanowisko.id_stanowisko";
+		$order	= " ORDER BY pracownik.id_pracownik";
+		$limit	= " LIMIT $start, $end";
 	
-		$sql = $select.$from.$join.$on;
+		$sql = $select.$from.$join.$on.$order.$limit;
 	
 		$conn = $this->db->getConn();
 		$result = mysqli_query($conn,$sql);

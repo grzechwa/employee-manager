@@ -1,11 +1,13 @@
 <?php
 require_once $conf->root_path.'/app/model/QueryDB.php';
 include_once $conf->root_path.'/app/view/snip/header.php';
-
+session_start();
 $q = new QueryDB();
 
-$listEmpl = $q->getShortInfoAll();
+// $listEmpl = $q->getShortInfoAll();
 $count = $q->getCount()->fetch_row();
+$_SESSION['ile']=$count;
+
 
 
 // ... generowanie widoku ....
