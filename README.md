@@ -1,1 +1,1 @@
-Prosty memedżer do zarządzania pracownikami typu dodaj, zobacz, usuń
+Prosty menedżer do zarządzania pracownikami typu dodaj, zobacz, usuń
